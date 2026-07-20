@@ -1,12 +1,13 @@
+# yaml-language-server: $schema=cv.schema.json
 personal:
   name: Pavlo Fedyna
   title: Senior Software Engineer
   location: Hamburg Metropolitan Area, Germany
   intro: |
-    Software engineer with 15+ years of experience building scalable, high-traffic services and data processing pipelines on AWS. 
+    Software engineer with 15+ years of experience building scalable, high-traffic services and data processing pipelines on AWS — backend-leaning, comfortable across the stack.
     Currently focused on search systems, hybrid/semantic search, and LLM-powered conversational interfaces at one of Germany's largest retailers.
     Core stack spans Java, Rust, Kotlin and Python on AWS, with a growing focus on Rust for performance-critical services.
-    Clean code and XP advocate with a user-centric mindset.
+    XP practitioner who ties technical decisions to customer and business outcomes.
   email: fed.pavlo@gmail.com
   homepage: https://anydef.github.io
   github: https://github.com/anydef
@@ -16,20 +17,19 @@ experience:
   - title: Senior Software Engineer
     company: Otto&Co
     date: Oct 2021 - Present
-    skills: [Java, Kotlin, Rust, Python, Spring, Spring WebFlux, Helidon 4, Solr, Kafka, Hazelcast, AWS, AWS CDK, Docker, Terraform, Github Actions, Jenkins, Packer, Grafana, Prometheus, Mimir, Langchain4j]
+    skills: [Java, Kotlin, Rust, Python, Go, TypeScript, Spring, Spring WebFlux, Helidon 4, Svelte, Solr, Kafka, Hazelcast, AWS, AWS CDK, Docker, Terraform, Github Actions, Jenkins, Packer, Grafana, Prometheus, Mimir, Langchain4j]
     description: |
       Architecting and developing the search platform for Germany's largest online retailer.
-      Maintaining search retrieval via high-performance Solr cluster.
-      Developing and maintaining high-throughput index data ingestion pipeline for Solr.
-      Built and maintained a hybrid search core service combining lexical and semantic search.
-      Rewrote the hybrid search core in Rust, significantly improving performance.
-      Migrated infrastructure from CloudFormation to Terraform and CI/CD from Jenkins to Github Actions.
-      Optimized AWS runtime costs.
-      Own observability and resilience stack.
-      Developed an LLM-backed Query Intent service.
-      Developed agentic conversational search assistant (storefront AI chatbot)
+      Developed an agentic conversational search assistant (storefront, pre-sales AI chatbot) and an LLM-backed Query Intent service.
       Prototyped voice-to-voice conversational search.
-
+      Growing and maintaining the Product Display Page that serves ~50% of the shop traffic.
+      Bringing features live via an extensive suite of A/B tests.
+      Built and maintained a hybrid search core service combining lexical and semantic search;
+      rewrote it in Rust, improving performance and cutting instance count 4x.
+      Maintaining search retrieval via a high-performance Solr cluster and its high-throughput index ingestion pipeline.
+      Own the observability and resilience stack; optimized AWS runtime costs.
+      Migrated infrastructure from CloudFormation to Terraform and CI/CD from Jenkins to Github Actions.
+      Mentoring junior developers and working students.
   - title: Tech Lead
     company: Caregonexx
     date: Oct 2020 - Sep 2021
@@ -37,7 +37,7 @@ experience:
     description: |
       Led a team of 5 engineers, collaborating with the PO on quarterly OKRs.
       Refined user and system requirements before feeding them into the development pipeline.
-      Designed and developed a SaaS solution for fleet and shipment management.
+      Designed and developed a SaaS solution for fleet and shipment management (Java/Spring backend, React frontend).
       Built a tour cost and time optimization service.
 
   - title: Senior Software Engineer
@@ -54,7 +54,7 @@ experience:
     date: Feb 2018 - Aug 2020
     skills: [Python, Java, Scala, SQL, Spring, Spark, Airflow, Databricks, AWS, Docker, Kubernetes, PostgreSQL, GraphQL, React, Jenkins]
     description: |
-      Built the reporting solution for Zalando's ad management self-service platform.
+      Built the reporting solution for Zalando's self-service B2B SaaS platform for ad management.
       Rewrote the reporting and analytics pipeline, migrating to cloud
       and achieving significant reduction in daily operational costs (10x).
       Implemented high-load data stream consumers powering the analytical processing pipeline.
@@ -78,7 +78,7 @@ experience:
     date: Mar 2017 - Aug 2017
     skills: [Java, SQL, JavaScript, Python, React, Selenium, Docker, AWS, Jenkins]
     description: |
-      Led development of the B2B client portal, delivering the MVP on time
+      Led development of the B2B SaaS client portal, delivering the MVP on time
       despite staffing constraints and high management pressure.
       Led development of the ad delivery auction management system.
       Built a plugin framework for the auction system, enabling sales engineers

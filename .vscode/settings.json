@@ -1,0 +1,6 @@
+{
+  "yaml.schemaStore.enable": false,
+  "yaml.schemas": {
+    "./cv.schema.json": ["cv.yaml"]
+  }
+}
