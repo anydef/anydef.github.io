@@ -209,9 +209,26 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.bio-item p {
+.bio-item p,
+.bio-item-highlights {
     color: #5c6d75;
     font-size: 0.95rem;
+}
+
+.bio-item-highlights {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: 1.6;
+}
+
+.bio-item-project {
+    margin: 0.5rem 0 0 1rem;
+}
+
+.bio-item-project-name {
+    font-weight: 600;
+    font-style: italic;
+    color: var(--text-primary);
 }
 
 .bio-item-skills {

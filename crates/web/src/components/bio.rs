@@ -6,7 +6,7 @@ struct Cv {
     personal: Personal,
     experience: Vec<Experience>,
     education: Vec<Education>,
-    skills: Skills,
+    skills: Vec<SkillCategory>,
     interests: Vec<Interest>,
 }
 
@@ -27,7 +27,15 @@ struct Experience {
     company: String,
     date: String,
     skills: Vec<String>,
-    description: String,
+    highlights: Vec<String>,
+    #[serde(default)]
+    projects: Vec<Project>,
+}
+
+#[derive(Deserialize, Clone)]
+struct Project {
+    name: String,
+    highlights: Vec<String>,
 }
 
 #[derive(Deserialize, Clone)]
@@ -38,12 +46,9 @@ struct Education {
 }
 
 #[derive(Deserialize, Clone)]
-struct Skills {
-    languages: Vec<String>,
-    frameworks: Vec<String>,
-    infrastructure: Vec<String>,
-    observability: Vec<String>,
-    data: Vec<String>,
+struct SkillCategory {
+    category: String,
+    items: Vec<String>,
 }
 
 #[derive(Deserialize, Clone)]
@@ -79,6 +84,8 @@ pub fn Bio() -> impl IntoView {
                         key=|exp| format!("{}-{}", exp.company, exp.date)
                         children=move |exp| {
                             let skills = exp.skills.clone();
+                            let highlights = exp.highlights.clone();
+                            let projects = exp.projects.clone();
                             view! {
                                 <div class="bio-item">
                                     <div class="bio-item-header">
@@ -86,7 +93,17 @@ pub fn Bio() -> impl IntoView {
                                         <span class="bio-item-date">{&exp.date}</span>
                                     </div>
                                     <span class="bio-item-company">{&exp.company}</span>
-                                    <p>{&exp.description}</p>
+                                    <ul class="bio-item-highlights">
+                                        {highlights.into_iter().map(|h| view! { <li>{h}</li> }).collect_view()}
+                                    </ul>
+                                    {projects.into_iter().map(|p| view! {
+                                        <div class="bio-item-project">
+                                            <span class="bio-item-project-name">{p.name}</span>
+                                            <ul class="bio-item-highlights">
+                                                {p.highlights.into_iter().map(|h| view! { <li>{h}</li> }).collect_view()}
+                                            </ul>
+                                        </div>
+                                    }).collect_view()}
                                     <div class="bio-item-skills">
                                         <For
                                             each=move || skills.clone()
@@ -104,71 +121,24 @@ pub fn Bio() -> impl IntoView {
 
                 <div class="bio-section">
                     <h3>"Skills"</h3>
-
-                    <div class="bio-skills-category">
-                        <h4>"Languages"</h4>
-                        <div class="bio-skills">
-                            <For
-                                each=move || cv.skills.languages.clone()
-                                key=|skill| skill.clone()
-                                children=move |skill| view! {
-                                    <span class="bio-skill">{skill}</span>
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div class="bio-skills-category">
-                        <h4>"Frameworks"</h4>
-                        <div class="bio-skills">
-                            <For
-                                each=move || cv.skills.frameworks.clone()
-                                key=|skill| skill.clone()
-                                children=move |skill| view! {
-                                    <span class="bio-skill">{skill}</span>
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div class="bio-skills-category">
-                        <h4>"Infrastructure"</h4>
-                        <div class="bio-skills">
-                            <For
-                                each=move || cv.skills.infrastructure.clone()
-                                key=|skill| skill.clone()
-                                children=move |skill| view! {
-                                    <span class="bio-skill">{skill}</span>
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div class="bio-skills-category">
-                        <h4>"Observability"</h4>
-                        <div class="bio-skills">
-                            <For
-                                each=move || cv.skills.observability.clone()
-                                key=|skill| skill.clone()
-                                children=move |skill| view! {
-                                    <span class="bio-skill">{skill}</span>
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div class="bio-skills-category">
-                        <h4>"Data"</h4>
-                        <div class="bio-skills">
-                            <For
-                                each=move || cv.skills.data.clone()
-                                key=|skill| skill.clone()
-                                children=move |skill| view! {
-                                    <span class="bio-skill">{skill}</span>
-                                }
-                            />
-                        </div>
-                    </div>
+                    <For
+                        each=move || cv.skills.clone()
+                        key=|cat| cat.category.clone()
+                        children=move |cat| view! {
+                            <div class="bio-skills-category">
+                                <h4>{cat.category.clone()}</h4>
+                                <div class="bio-skills">
+                                    <For
+                                        each=move || cat.items.clone()
+                                        key=|skill| skill.clone()
+                                        children=move |skill| view! {
+                                            <span class="bio-skill">{skill}</span>
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        }
+                    />
                 </div>
 
                 <div class="bio-section">

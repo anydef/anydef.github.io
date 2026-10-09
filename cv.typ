@@ -1,123 +1,89 @@
 #let cv = yaml("cv.yaml")
 
-#set document(title: cv.personal.name, author: cv.personal.name)
-#set page(margin: (x: 2cm, y: 2cm))
+#set document(title: cv.personal.name + " - CV", author: cv.personal.name)
+#set page(margin: (x: 1.8cm, y: 1.4cm))
 #set text(font: "New Computer Modern", size: 10pt)
-#set par(justify: true)
+#set par(justify: false, leading: 0.55em)
+#set list(indent: 4pt, body-indent: 5pt, spacing: 0.5em)
 
 // Colors
 #let accent = rgb("#f74c00")
 #let dark = rgb("#2a3439")
 
+#let strip-scheme(url) = url.replace("https://", "").replace("http://", "")
+
+#let section(title) = {
+  v(8pt)
+  text(size: 12pt, weight: "bold", fill: accent)[#title]
+  v(-6pt)
+  line(length: 100%, stroke: 0.5pt + accent)
+  v(2pt)
+}
+
 // Header
 #align(center)[
-  #text(size: 24pt, weight: "bold", fill: dark)[#cv.personal.name]
-  #v(4pt)
+  #text(size: 22pt, weight: "bold", fill: dark)[#cv.personal.name]
+  #v(2pt)
   #text(size: 12pt, fill: accent)[#cv.personal.title]
-  #v(4pt)
-  #text(size: 10pt)[#cv.personal.location]
-  #v(8pt)
+  #v(2pt)
+  #text(size: 9.5pt)[
+    #cv.personal.location · #cv.work_preferences.employment, #lower(cv.work_preferences.arrangement)
+  ]
+  #v(2pt)
   #text(size: 9pt)[
-    #link("mailto:" + cv.personal.email)[#cv.personal.email] |
-    #link(cv.personal.homepage)[Homepage] |
-    #link(cv.personal.github)[GitHub] |
-    #link(cv.personal.linkedin)[LinkedIn]
+    #link("mailto:" + cv.personal.email)[#cv.personal.email] ·
+    #link(cv.personal.linkedin)[#strip-scheme(cv.personal.linkedin)] ·
+    #link(cv.personal.github)[#strip-scheme(cv.personal.github)] ·
+    #link(cv.personal.homepage)[#strip-scheme(cv.personal.homepage)]
   ]
 ]
 
-#v(16pt)
+#section[Summary]
+#cv.personal.intro.split("\n").filter(l => l.trim() != "").join(" ")
 
-// Summary
-#text(size: 12pt, weight: "bold", fill: accent)[Summary]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-#cv.personal.intro
-
-#v(12pt)
-
-// Experience
-#text(size: 12pt, weight: "bold", fill: accent)[Experience]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
-#for job in cv.experience [
-  #grid(
-    columns: (1fr, auto),
-    text(weight: "bold")[#job.title #text(fill: dark.lighten(30%))[at] #job.company],
-    text(style: "italic", size: 9pt)[#job.date]
-  )
-  #v(2pt)
-  #job.description
-  #v(2pt)
-  #text(size: 8pt, fill: dark.lighten(40%))[#job.skills.join(" · ")]
-  #v(8pt)
-]
-
-// Skills
-#text(size: 12pt, weight: "bold", fill: accent)[Skills]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
+#section[Skills]
 #grid(
   columns: (auto, 1fr),
-  row-gutter: 4pt,
+  row-gutter: 5pt,
   column-gutter: 12pt,
-  text(weight: "bold")[Languages:], cv.skills.languages.join(", "),
-  text(weight: "bold")[Frameworks:], cv.skills.frameworks.join(", "),
-  text(weight: "bold")[Infrastructure:], cv.skills.infrastructure.join(", "),
-  text(weight: "bold")[Observability:], cv.skills.observability.join(", "),
-  text(weight: "bold")[Data:], cv.skills.data.join(", "),
+  ..cv.skills.map(s => (text(weight: "bold")[#s.category], s.items.join(", "))).flatten()
 )
 
-#v(12pt)
+#section[Experience]
+#for job in cv.experience [
+  #block(breakable: true)[
+    #grid(
+      columns: (1fr, auto),
+      [#text(weight: "bold")[#job.title] #text(fill: dark.lighten(30%))[·] #job.company],
+      text(style: "italic", size: 9pt)[#job.date]
+    )
+    #v(-2pt)
+    #list(..job.highlights.map(h => [#h]))
+    #for proj in job.at("projects", default: ()) [
+      #v(1pt)
+      #block(breakable: false, pad(left: 10pt)[
+        #text(weight: "bold", style: "italic")[#proj.name]
+        #v(-4pt)
+        #list(..proj.highlights.map(h => [#h]))
+      ])
+    ]
+    #v(-2pt)
+    #text(size: 8.5pt, fill: dark.lighten(30%))[Tech: #job.skills.join(", ")]
+  ]
+  #v(6pt)
+]
 
-// Education
-#text(size: 12pt, weight: "bold", fill: accent)[Education]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
+#section[Education]
 #for edu in cv.education [
   #grid(
     columns: (1fr, auto),
-    [#text(weight: "bold")[#edu.degree] \ #edu.institution],
+    [#text(weight: "bold")[#edu.degree] · #edu.institution],
     text(style: "italic", size: 9pt)[#edu.date]
   )
-  #v(4pt)
 ]
 
-#v(12pt)
+#section[Languages]
+#cv.languages.map(l => l.name + " (" + l.level + ")").join(", ")
 
-// Languages
-#text(size: 12pt, weight: "bold", fill: accent)[Languages]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
-#cv.languages.join(", ")
-
-#v(12pt)
-
-// Interests
-#text(size: 12pt, weight: "bold", fill: accent)[Interests]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
-#for interest in cv.interests [
-  #text(weight: "bold")[#interest.name] --- #interest.description
-  #v(4pt)
-]
-
-#v(12pt)
-
-// Work Preferences
-#text(size: 12pt, weight: "bold", fill: accent)[Work Preferences]
-#line(length: 100%, stroke: 0.5pt + accent)
-#v(4pt)
-
-#grid(
-  columns: (auto, 1fr),
-  row-gutter: 4pt,
-  column-gutter: 12pt,
-  text(weight: "bold")[Employment:], cv.work_preferences.employment,
-  text(weight: "bold")[Arrangements:], cv.work_preferences.arrangements.join(", "),
-  text(weight: "bold")[Travel:], cv.work_preferences.travel,
-)
+#section[Interests]
+#list(..cv.interests.map(i => [#text(weight: "bold")[#i.name] --- #i.description]))

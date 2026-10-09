@@ -1,141 +1,138 @@
 # yaml-language-server: $schema=cv.schema.json
 personal:
   name: Pavlo Fedyna
-  title: Senior Software Engineer
-  location: Hamburg Metropolitan Area, Germany
+  title: Senior Software Engineer · Search, AI & Platform Engineering
+  location: Hamburg, Germany
   intro: |
-    Software engineer with 15+ years of experience building scalable, high-traffic services and data processing pipelines on AWS — backend-leaning, comfortable across the stack.
-    Currently focused on search systems, hybrid/semantic search, and LLM-powered conversational interfaces at one of Germany's largest retailers.
-    Core stack spans Java, Rust, Kotlin and Python on AWS, with a growing focus on Rust for performance-critical services.
-    XP practitioner who ties technical decisions to customer and business outcomes.
+    Senior backend engineer with 15 years of experience building high-traffic, resilient systems, most recently at OTTO, one of Germany's largest online shops.
+    There I built hybrid lexical and semantic search over 20 million products and an LLM-based pre-sales shopping assistant, and I now work on the product detail page, which handles about half of otto.de traffic.
+    I own services from design to on-call with a strong focus on observability and performance, and help shape OTTO's developer platform as a committee member.
+    I've led a small team, mentor junior engineers, and work best with XP practices like TDD, pairing and continuous delivery.
   email: fed.pavlo@gmail.com
   homepage: https://anydef.github.io
   github: https://github.com/anydef
   linkedin: https://linkedin.com/in/anydef
 
 experience:
-  - title: Senior Software Engineer
-    company: Otto&Co
-    date: Oct 2021 - Present
-    skills: [Java, Kotlin, Rust, Python, Go, TypeScript, Spring, Spring WebFlux, Helidon 4, Svelte, Solr, Kafka, Hazelcast, AWS, AWS CDK, Docker, Terraform, Github Actions, Jenkins, Packer, Grafana, Prometheus, Mimir, Langchain4j]
-    description: |
-      Architecting and developing the search platform for Germany's largest online retailer.
-      Developed an agentic conversational search assistant (storefront, pre-sales AI chatbot) and an LLM-backed Query Intent service.
-      Prototyped voice-to-voice conversational search.
-      Growing and maintaining the Product Display Page that serves ~50% of the shop traffic.
-      Bringing features live via an extensive suite of A/B tests.
-      Built and maintained a hybrid search core service combining lexical and semantic search;
-      rewrote it in Rust, improving performance and cutting instance count 4x.
-      Maintaining search retrieval via a high-performance Solr cluster and its high-throughput index ingestion pipeline.
-      Own the observability and resilience stack; optimized AWS runtime costs.
-      Migrated infrastructure from CloudFormation to Terraform and CI/CD from Jenkins to Github Actions.
-      Mentoring junior developers and working students.
+  - title: Senior Software Engineer, Product Detail Page
+    company: OTTO (GmbH & Co KG)
+    date: 02/2026 – present
+    skills: [Kotlin, Go, TypeScript, Svelte, AWS ECS, Amazon Aurora, DynamoDB, Kafka]
+    highlights:
+      - Develop the product detail page for otto.de, backend and frontend, which serves about half of the shop's traffic (around 500 requests/sec).
+      - Own observability and performance for the team, from metrics and alerting to finding latency bottlenecks.
+      - Member of OTTO's developer platform committee. Build and advocate for standard infrastructure modules (CI/CD pipelines, Terraform) and am preparing the team to pilot the new platform.
+      - Built and open-sourced otto-config (github.com/otto-de/otto-config), a shared Java library for reading configuration from multiple sources, now used by the search and product detail page teams.
+      - Write ADRs for the team and across the department, and validate changes through A/B tests before rolling them out.
+      - Mentor junior developers, working students and apprentices.
+
+  - title: Senior Software Engineer, Search
+    company: OTTO (GmbH & Co KG)
+    date: 10/2021 – 01/2026
+    skills: [Java, Kotlin, Rust, Python, Spring WebFlux, Helidon, Solr, Kafka, Hazelcast, LangChain4j, Langfuse, AWS, Terraform]
+    highlights:
+      - Designed and built the search platform for otto.de, with a Solr cluster holding 20 million active products and serving around 200 requests/sec.
+      - Built and ran the indexing pipeline, including lexical analysis, which keeps the search index within 15 minutes of product data changes.
+      - Drove Rust adoption in the team and rewrote the hybrid (lexical and semantic) search service in Rust, cutting latency for comparable requests from 100 ms to 20 ms and halving compute.
+      - Built an LLM-backed query intent service that interprets search queries.
+      - Owned observability and resilience for the team's services and reduced AWS running costs.
+      - Migrated infrastructure from CloudFormation to Terraform and CI/CD from Jenkins to GitHub Actions.
+    projects:
+      - name: Pre-sales AI shopping assistant
+        highlights:
+          - Built an agentic LLM assistant that answers pre-sales questions for up to 100 concurrent users.
+          - Set up its observability with OpenTelemetry, Langfuse, Grafana and the Prometheus stack.
+          - Developed the infrastructure for evaluating and measuring the quality of its answers.
+          - Prototyped voice-to-voice conversational search on top of it.
+
   - title: Tech Lead
     company: Caregonexx
-    date: Oct 2020 - Sep 2021
-    skills: [Java, TypeScript, SQL, Spring, React, AWS, Docker, PostgreSQL]
-    description: |
-      Led a team of 5 engineers, collaborating with the PO on quarterly OKRs.
-      Refined user and system requirements before feeding them into the development pipeline.
-      Designed and developed a SaaS solution for fleet and shipment management (Java/Spring backend, React frontend).
-      Built a tour cost and time optimization service.
-
-  - title: Senior Software Engineer
-    company: Caregonexx
-    date: Aug 2020 - Oct 2020
-    skills: [Java, TypeScript, SQL, Spring, React, AWS, Docker, PostgreSQL]
-    description: |
-      Implemented and maintained an internal customer-facing solution for fleet and shipment management.
-      Integrated GPS providers for real-time fleet tracking.
-      Introduced TDD, pair programming, and CI/CD practices to the team.
+    date: 08/2020 – 09/2021
+    skills: [Java, Spring, TypeScript, React, PostgreSQL, AWS, Docker]
+    highlights:
+      - Promoted from Senior Software Engineer to Tech Lead after three months; led a team of 5 engineers.
+      - Designed and built a SaaS product for fleet and shipment management (Java/Spring, React).
+      - Built a tour cost and time optimization service; integrated GPS providers for live fleet tracking.
+      - Set quarterly OKRs with the product owner and refined requirements before they went into development.
+      - Introduced TDD, pair programming and CI/CD to the team.
 
   - title: Senior Software Engineer
     company: Zalando Marketing Services
-    date: Feb 2018 - Aug 2020
-    skills: [Python, Java, Scala, SQL, Spring, Spark, Airflow, Databricks, AWS, Docker, Kubernetes, PostgreSQL, GraphQL, React, Jenkins]
-    description: |
-      Built the reporting solution for Zalando's self-service B2B SaaS platform for ad management.
-      Rewrote the reporting and analytics pipeline, migrating to cloud
-      and achieving significant reduction in daily operational costs (10x).
-      Implemented high-load data stream consumers powering the analytical processing pipeline.
-      Developed an analytics module for the marketplace platform.
-      Established 24/7 on-call support infrastructure for the team.
-      Introduced TDD, pair programming, and CI/CD practices.
-      Enabled stakeholder access to data through self-service sharing solutions.
+    date: 02/2018 – 08/2020
+    skills: [Python, Java, Scala, Spark, Airflow, Databricks, PostgreSQL, GraphQL, AWS, Kubernetes]
+    highlights:
+      - Built the reporting for Zalando's self-service B2B advertising platform.
+      - Rewrote the analytics pipeline and moved it to the cloud, cutting daily operating costs by 10x.
+      - Built high-load consumers that process Zalando's full view and click stream for analytics.
+      - Built a marketplace analytics module and self-service data access for stakeholders.
+      - Set up 24/7 on-call for the team.
 
   - title: Senior Software Engineer
     company: EOS Technology Solutions
-    date: Aug 2017 - Feb 2018
-    skills: [Java, SQL, JavaScript, Spring, Hibernate, React, Selenium, Cucumber, Kafka, Jenkins]
-    description: |
-      Implemented and maintained a client-data management system.
-      Refactored and added test coverage to legacy parts of the system.
-      Optimized the ORM layer to improve user experience.
-      Introduced BDD and automated web testing.
+    date: 08/2017 – 02/2018
+    skills: [Java, Spring, Hibernate, React, Kafka, Cucumber, Selenium]
+    highlights:
+      - Refactored and tested a legacy client data system, tuned the ORM for a faster UI, and introduced BDD.
 
   - title: Lead Software Engineer
-    company: Smaato Inc.
-    date: Mar 2017 - Aug 2017
-    skills: [Java, SQL, JavaScript, Python, React, Selenium, Docker, AWS, Jenkins]
-    description: |
-      Led development of the B2B SaaS client portal, delivering the MVP on time
-      despite staffing constraints and high management pressure.
-      Led development of the ad delivery auction management system.
-      Built a plugin framework for the auction system, enabling sales engineers
-      to onboard advertisers without developer involvement.
+    company: Smaato
+    date: 10/2014 – 08/2017
+    skills: [Java, Spring, Hibernate, Kafka, React, AWS, Docker, Packer]
+    highlights:
+      - Joined as Software Engineer and was promoted to Lead Software Engineer in 2017.
+      - Reworked the auction algorithm of a distributed ad auction system handling about 30,000 requests/sec on average, cutting CPU usage by 20% and allowing a smaller cluster.
+      - Built a plugin framework so sales engineers could onboard advertisers without developer help.
+      - Led development of the B2B client portal and delivered the MVP on schedule with a short-staffed team.
+      - Migrated and rewrote several legacy applications.
 
   - title: Software Engineer
-    company: Smaato Inc.
-    date: Oct 2014 - Mar 2017
-    skills: [Java, SQL, JavaScript, Spring, Hibernate, Docker, AWS, Jenkins, Packer, Kafka]
-    description: |
-      Implemented and maintained a high-load, distributed ad delivery auction management system.
-      Refactored the auction handling algorithm, improving CPU performance by 20%
-      and reducing cluster size.
-      Migrated and rewrote several legacy applications and components.
-
-  - title: Software Engineer
-    company: Edvantis Inc.
-    date: Mar 2012 - Sep 2014
-    skills: [Java, SQL, JavaScript, Spring, AWS]
-    description: Delivered a variety of projects for US and European customers.
-
-  - title: Junior Software Engineer
-    company: Lvivsoft Inc.
-    date: Jul 2011 - Mar 2012
-    skills: [Java, SQL, JavaScript, Spring, Solr, AWS]
-    description: |
-      Implemented and maintained a social media platform.
-      Deployed and tested application backend and frontend.
+    company: Edvantis, Lvivsoft
+    date: 07/2011 – 09/2014
+    skills: [Java, Spring, SQL, Solr, AWS]
+    highlights:
+      - Java/Spring development for clients in the US and Europe, including a social media platform.
 
 education:
-  - degree: B.S in Applied Linguistics
-    institution: "State University 'Lviv Polytechnics'"
-    date: Aug 2006 - Aug 2010
+  - degree: Bachelor's degree, Applied Linguistics
+    institution: Lviv Polytechnic National University
+    date: 2006 – 2010
 
 languages:
-  - English
-  - German
-  - Ukrainian
+  - name: English
+    level: C2
+  - name: German
+    level: C1
+  - name: Ukrainian
+    level: Native
 
 skills:
-  languages: [Java, Kotlin, Python, Rust, TypeScript, JavaScript, SQL]
-  frameworks: [Spring, Spring WebFlux, Helidon 4, React, GraphQL, Langchain4j]
-  infrastructure: [AWS, AWS CDK, Docker, Kubernetes, Terraform, Kafka, Hazelcast, Github Actions, Jenkins, Packer]
-  observability: [Grafana, Prometheus, Mimir]
-  data: [Solr, PostgreSQL, Spark, Airflow, Databricks]
+  - category: Languages
+    items: [Kotlin, Java, Rust, Go, Python, TypeScript, SQL]
+  - category: Search & AI
+    items: [Solr, Hybrid search, Semantic search, LLM agents, LangChain4j]
+  - category: Backend
+    items: [Spring, Spring WebFlux, Helidon, Kafka, Hazelcast, GraphQL]
+  - category: Data
+    items: [Amazon Aurora, DynamoDB, PostgreSQL, Spark, Airflow, Databricks]
+  - category: Cloud & DevOps
+    items: [AWS, AWS ECS, AWS CDK, Terraform, Docker, Kubernetes, GitHub Actions, Jenkins]
+  - category: Observability
+    items: [OpenTelemetry, Grafana, Prometheus, Mimir, Langfuse]
+  - category: Frontend
+    items: [React, Svelte]
+  - category: Practices
+    items: [XP, TDD, Pair programming, CI/CD, A/B testing, On-call, ADRs, Platform engineering]
 
 interests:
-  - name: Rust on Embedded Systems
-    description: Exploring bare-metal programming and IoT applications with Rust's safety guarantees
-  - name: Game Development
-    description: Building games as a creative outlet and to explore real-time systems architecture
-  - name: Homelab Infrastructure
-    description: Running a self-hosted Proxmox cluster with Kubernetes for learning and experimentation
+  - name: Embedded Rust
+    description: Bare-metal and IoT projects on microcontrollers.
+  - name: Microelectronics
+    description: Hands-on electronics and hardware projects.
+  - name: Homelab
+    description: Proxmox cluster running a fully functional Kubernetes setup for learning and experimentation.
+  - name: Game development
+    description: Small games as a way to explore real-time systems.
 
 work_preferences:
   employment: Full-time
-  arrangements:
-    - Hybrid
-    - Remote (preferred)
-  travel: Open to limited travel as needed
+  arrangement: Hybrid or remote
