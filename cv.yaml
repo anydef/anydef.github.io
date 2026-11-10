@@ -29,7 +29,7 @@ experience:
   - title: Senior Software Engineer, Search
     company: OTTO (GmbH & Co KG)
     date: 10/2021 – 01/2026
-    skills: [Java, Kotlin, Rust, Python, Spring WebFlux, Helidon, Solr, Kafka, Hazelcast, LangChain4j, Langfuse, AWS, Terraform]
+    skills: [Java, Kotlin, Rust, Python, Spring WebFlux, Helidon, Solr, Kafka, Hazelcast, LangChain4j, Langfuse, nginx, AWS, Terraform]
     highlights:
       - Designed and built the search platform for otto.de, with a Solr cluster holding 20 million active products and serving around 200 requests/sec.
       - Built and ran the indexing pipeline, including lexical analysis, which keeps the search index within 15 minutes of product data changes.
@@ -44,6 +44,11 @@ experience:
           - Set up its observability with OpenTelemetry, Langfuse, Grafana and the Prometheus stack.
           - Developed the infrastructure for evaluating and measuring the quality of its answers.
           - Prototyped voice-to-voice conversational search on top of it.
+      - name: Live traffic shadowing
+        highlights:
+          - Built a Rust proxy that, together with nginx request mirroring, shadows live production traffic into development environments. It works for any service in the stack.
+          - Made the share of mirrored traffic adjustable on the fly through reloadable nginx config.
+          - Used across the team and partly across the department. Besides scaling and infrastructure issues, it caught logic defects that tests had missed.
 
   - title: Tech Lead
     company: Cargonexx
@@ -115,7 +120,7 @@ skills:
   - category: Data
     items: [Amazon Aurora, DynamoDB, PostgreSQL, Spark, Airflow, Databricks]
   - category: Cloud & DevOps
-    items: [AWS, AWS ECS, AWS CDK, Terraform, Docker, Kubernetes, GitHub Actions, Jenkins]
+    items: [AWS, AWS ECS, AWS CDK, Terraform, nginx, Docker, Kubernetes, GitHub Actions, Jenkins]
   - category: Observability
     items: [OpenTelemetry, Grafana, Prometheus, Mimir, Langfuse]
   - category: Frontend
